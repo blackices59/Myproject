@@ -3,7 +3,8 @@
   color: #fff;
   text-decoration: none;
   padding: 1em 2em;
-  margin: 0;
+  margin: 5px;
+  display: inline-block
 }
 
 .links-list a:hover {
@@ -14,11 +15,19 @@
 .links-list {
     display: inline-flex;
     list-style: none;
-    margin: -5px;
 }
 
 header {
     text-align: center;
     background-color: #479eec ;
     margin: 0;
+}
+
+.box {
+    border: 5px solid olivedrab;
+    width: 50%;
+    height: 100px;
+    margin: 10%;
+    padding: 10%;
+
 }
