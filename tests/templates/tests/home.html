@@ -2,43 +2,44 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="stylesheet" href="../../../static/css/styles.css">
+    <title>猜数字游戏</title>
 
     <script src="../../../static/js/script.js" async></script>
+
+    <style>
+      .msgBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 300px;
+        background: #eee;
+      }
+
+      .msgBox p {
+        line-height: 1.5;
+        color: #333;
+        padding: 10px 20px 10px 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
+      }
+
+      .msgBox button {
+        background: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
+
+    </style>
 </head>
 
 <body>
 
-<header>
-    <h1>自动变速箱标定科-数字化开发小组</h1>
-</header>
-
-
-
-
-<nav>
-    <div>
-        <ul class="links-list">
-            <li><a href="">售后数据分析</a></li>
-            <li><a href="">启动分析</a></li>
-            <li><a href="">秒采分析</a></li>
-        </ul>
-    </div>
-
-</nav>
-
-<div class="box">
-    <p>These boxes both have a height set, this box has content in it which will need more space than the assigned
-        height, and so we get overflow.</p>
-</div>
-
-
-<button>点我呀</button>
-
-
-
+<button>Display message box</button>
 
 </body>
 </html>
