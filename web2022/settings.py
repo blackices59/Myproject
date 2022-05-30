@@ -79,8 +79,15 @@ WSGI_APPLICATION = 'web2022.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mytest',  # 数据库名
+        'USER': 'root',  # 你设置的用户名 - 非root用户
+        'PASSWORD': '123456789',  # 换成你自己密码
+        # 'HOST': '*',  # 注意：这里使用的是db别名，docker会自动解析成ip
+        'PORT': '3306',  # 端口
+    },
+    'OPTIONS': {
+            "init_command": "SET foreign_key_checks = 0;",
     }
 }
 
@@ -122,6 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
 STATICFILES_DIRS = [
     (os.path.join(BASE_DIR, 'static'))
