@@ -21,4 +21,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     # 测试网页界面
     path('tests/', include('tests.urls')),
+    path('webtest/', include('webtest.urls'))
 ]

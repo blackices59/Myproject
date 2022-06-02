@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'tests.apps.TestsConfig',
+    'webtest.apps.WebtestConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'web2022.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mytest',  # 数据库名
+        'NAME': 'webtest',  # 数据库名
         'USER': 'root',  # 你设置的用户名 - 非root用户
         'PASSWORD': '123456789',  # 换成你自己密码
         # 'HOST': '*',  # 注意：这里使用的是db别名，docker会自动解析成ip
