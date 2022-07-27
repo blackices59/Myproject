@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hightcart测试</title>
+</head>
+<body>
+<!--容器-->
+    <div id="container1" style="width: 1800px;height: 600px;"></div>
+<!--引入hightcart-->
+    <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script>
+        const options1 = {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: "CN100平台车型与故障数量柱状图",
+                style: {
+                    fontSize: '25px'
+                }
+            },
+            subtitle: {
+                text: "这是副标题"
+            },
+            xAxis: {
+                title: {
+                    text: "车型",
+                    style: {
+                        fontSize: '20px'
+                    }
+                },
+                categories: [
+                    "CN115",
+                    "CN120S",
+                    "CN110V",
+                    "CN112",
+                    "CN113",
+                    "CN150M",
+                    "CN100V",
+                    "CN110P",
+                    "CN150V",
+                ],
+                crosshair: true,
+                labels: {
+                    style: {fontSize: '18px'}
+                }
+            },
+            yAxis: {
+                min: 0,
+                title:{
+                    text: "故障数量（辆）",
+                    style: {
+                        fontSize: '20px'
+                    }
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+				        fontWeight: 'bold',
+				        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+			        }
+                },
+                labels: {
+                    style: {fontSize: '18px'}
+                }
+
+            },
+            tooltip: {
+              style: {
+                  fontSize: '15px'
+              }
+            },
+            credits: {
+              text: 'SGMW-TDC-ATC-数字化小组'
+            },
+            plotOptions: {
+		        column: {
+			        stacking: 'normal',
+			        dataLabels: {
+				        enabled: true,
+				        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+				        style: {
+					// 如果不需要数据标签阴影，可以将 textOutline 设置为 'none'
+					        textOutline: '1px 1px black'
+                            }
+			        }
+		        }
+	        },
+            series: [{
+                        name: "动力总成",
+                        data: [5, 3, 2, 1, 2, 4, 2, 1, 1]
+                    },
+                {
+                    name: "底盘部件",
+                    data: [1, 1, 2, 2, 1, 1, 2, 2, 2]
+                },
+                {
+                    name: "智能网联",
+                    data: [1, 3, 3, 3, 4, 5, 6, 6, 7]
+                },
+                {
+                    name: "空调电子",
+                    data: [2, 3, 4, 5, 6, 8, 1, 1, 0]
+                }
+                ]
+        };
+        // 图表初始化函数
+        const chart1 = Highcharts.chart('container1', options1);
+    </script>
+
+    <!--容器-->
+    <div id="container2" style="width: 600px;height: 600px;"></div>
+    <script src="http://cdn.hcharts.cn/highcharts/modules/drilldown.js"></script>
+    <script>
+        const options2 = {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: '车型平台与故障数量百分比',
+                style: {fontSize: '25px'},
+            },
+            tooltip: {
+              style: {
+                  fontSize: '15px'
+              }
+            },
+            subtitle: {
+                text: '点击每个车型平台可以看到各个车型平台下的车型故障率饼图',
+            },
+            credits: {
+              text: 'SGMW-TDC-ATC-数字化小组'
+            },
+            series: [{
+                name: '车型平台',
+                data: [{
+                    name: 'CN100平台',
+                    y: 26.3,
+                },{
+                    name: 'CN180平台',
+                    y: 17.3,
+                },{
+                    name: 'CN200平台',
+                    y: 37.6,
+                },{
+                    name: 'N平台',
+                    y: 18.3,
+                },{
+                    name: '950平台',
+                    y: 0.5,
+                }]
+                }],
+            drilldown: {
+                series:
+            }
+
+        };
+        // 图表初始化函数
+        const chart2 = Highcharts.chart('container2', options2);
+    </script>
+
+</body>
+</html>
