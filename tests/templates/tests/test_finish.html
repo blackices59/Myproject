@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test_finish</title>
+    <script src="/static/js/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+    <table>
+        <tr class="form-group">
+            <td><label>下拉测试：</label></td>
+            <td>
+                <label>
+                    <select name="brand" id="brand">
+                        <option value="">请选择车辆商标</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select name="platform" id="platform">
+                        <option value="">请选择车型平台</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select name="carmodel" id="carmodel">
+                        <option value="">请选择车型代码</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select name="engine" id="engine">
+                        <option value="">请选择发动机型号</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select name="gearbox" id="gearbox">
+                        <option value="">请选择变速箱型号</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select name="emissionregulation" id="emissionregulation">
+                        <option value="">请选择排放法规</option>
+                    </select>
+                </label>
+            </td>
+        </tr>
+    </table>
+
+    {% for i in string %}
+    {{ i }}
+    {% endfor %}
+
+    <script>
+
+        //车辆商标
+        $.get("/tests/getBrand/", {}, function (data) {
+
+            for(var i = 0; i < data["brands"].length; i++) {
+                var option = $("<option value="+data["brands"][i][0]+">"+data["brands"][i][1]+"</option>");
+                $("#brand").append(option)
+            }
+        })
+
+        //当车辆商标改变时，清空后面的选择框，并选出车型平台
+        $("#brand").change(function () {
+            $("#platform").empty().append('<option value="">请选择车型平台</option>');
+            $("#carmodel").empty().append('<option value="">请选择车辆型号</option>');
+            $("#engine").empty().append('<option value="">请选择发动机型号</option>');
+            $("#gearbox").empty().append('<option value="">请选择变速箱型号</option>');
+            $("#emissionregulation").empty().append('<option value="">请选择排放法规</option>');
+            $.ajax({
+                url:"/tests/getPlatform/",
+                type:"get",
+                data:{
+                    "platform_id":$(this).val()
+                }
+            }).done(function (data) {
+                //console.log(data["models"].length);
+                for(var i = 0; i < data["platforms"].length; i++) {
+                    var option = $("<option value="+data["platforms"][i][0]+">"+data["platforms"][i][1]+"</option>");
+                    $("#platform").append(option);
+                }
+            })
+        });
+
+        //当车型平台改变时，清空后面的选择框，并选出车型代码
+        $("#platform").change(function () {
+            $("#carmodel").empty().append('<option value="">请选择车型代码</option>');
+            $("#engine").empty().append('<option value="">请选择发动机型号</option>');
+            $("#gearbox").empty().append('<option value="">请选择变速箱型号</option>');
+            $("#emissionregulation").empty().append('<option value="">请选择排放法规</option>');
+            $.ajax({
+                url:"/tests/getCarModel/",
+                type:"get",
+                data:{
+                    "carmodel_id":$(this).val()
+                }
+            }).done(function (data) {
+                //console.log(data["models"].length);
+                for(var i = 0; i < data["carmodels"].length; i++) {
+                    var option = $("<option value="+data["carmodels"][i][0]+">"+data["carmodels"][i][1]+"</option>");
+                    $("#carmodel").append(option);
+                }
+            })
+        });
+
+        //当发动机型号改变时，清空后面的选择框
+        $("#carmodel").change(function () {
+            $("#engine").empty().append('<option value="">请选择发动机型号</option>');
+            $("#gearbox").empty().append('<option value="">请选择变速箱型号</option>');
+            $("#emissionregulation").empty().append('<option value="">请选择排放法规</option>');
+            $.ajax({
+                url:"/tests/getEngine/",
+                type:"get",
+                data:{
+                    "engine_id":$(this).val()
+                }
+            }).done(function (data) {
+                //console.log(data["models"].length);
+                for(var i = 0; i < data["engines"].length; i++) {
+                    var option = $("<option value="+data["engines"][i][0]+">"+data["engines"][i][1]+"</option>");
+                    $("#engine").append(option);
+                }
+            })
+        });
+
+        //当发动机型号改变时，清空后面的选择框
+        $("#engine").change(function () {
+            $("#gearbox").empty().append('<option value="">请选择变速箱型号</option>');
+            $("#emissionregulation").empty().append('<option value="">请选择排放法规</option>');
+            $.ajax({
+                url:"/tests/getGearBox/",
+                type:"get",
+                data:{
+                    "gearbox_id":$(this).val()
+                }
+            }).done(function (data) {
+                //console.log(data["models"].length);
+                for(var i = 0; i < data["gearboxs"].length; i++) {
+                    var option = $("<option value="+data["gearboxs"][i][0]+">"+data["gearboxs"][i][1]+"</option>");
+                    $("#gearbox").append(option);
+                }
+            })
+        });
+
+        //当变速箱型号改变时，清空后面的选择框
+        $("#gearbox").change(function () {
+            $("#emissionregulation").empty().append('<option value="">请选择排放法规</option>');
+            $.ajax({
+                url:"/tests/getEmissionRegulation/",
+                type:"get",
+                data:{
+                    "emissionRegulation_id":$(this).val()
+                }
+            }).done(function (data) {
+                //console.log(data["models"].length);
+                for(var i = 0; i < data["emissionRegulations"].length; i++) {
+                    var option = $("<option value="+data["emissionRegulations"][i][0]+">"+data["emissionRegulations"][i][1]+"</option>");
+                    $("#emissionregulation").append(option);
+                }
+            })
+        });
+
+
+    </script>
+</body>
+</html>

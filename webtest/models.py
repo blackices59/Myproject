@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # 建立平台-车辆型号-车型代码自关联表
 class PlatformModelCode(models.Model):
-    data = models.CharField(verbose_name='车型特征数据', max_length=100, null=True, blank=True, unique=True)
+    info = models.CharField(verbose_name='车型特征数据', max_length=100, null=True, blank=True, unique=True)
     pid = models.ForeignKey('self', related_name='beyond', blank=True, null=True, verbose_name='自关联标识',
                             on_delete=models.SET_NULL)
 
@@ -13,7 +13,7 @@ class PlatformModelCode(models.Model):
         verbose_name_plural = verbose_name  # 显示的复数名称
 
     def __str__(self):
-        return self.data
+        return self.info
 
 
 #  层级一，大平台创建

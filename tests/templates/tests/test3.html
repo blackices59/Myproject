@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+    <label>
+        <select id="platform">
+            <option value="">请选择车型平台</option>
+        </select>
+    </label>
+    <label>
+        <select id="model">
+            <option value="">请选择车型代码</option>
+        </select>
+    </label>
+    <label>
+        <select id="code">
+            <option value="">请选择车辆代码</option>
+        </select>
+    </label>
+
+</body>
+    <script>
+        address = function (a, b) {
+            $.get('/addr/'+a, function (dic){
+                $.each(dic, function (index, item){
+                    b.append('<option value=' + item.id + '">' + item.info + '</option>')
+                })
+            })
+        }
+
+        $(function (){
+            platform = $('#platform')
+            model = $('#model')
+            code = $('#code')
+
+            address(0, platform)
+
+            platform.change(function (){
+                model.empty().append('<option value="">请选择车型代码</option>');
+                code.empty().append('<option value="">请选择车辆代码</option>');
+                address(this.value, model)
+            })
+
+            model.change(function (){
+                code.empty().append('<option value="">请选择车辆代码</option>');
+                address(this.value, code)
+            })
+        })
+
+    </script>
+</html>
