@@ -52,9 +52,16 @@
         </tr>
     </table>
 
-    {% for i in string %}
-    {{ i }}
-    {% endfor %}
+    <table>
+        <tbody>
+        {% for obj in string %}
+            <tr>
+{#                <td>{{ forloop.counter }}</td>#}
+                <td>{{ obj.info }}-{{ obj.relationship_id }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
     <script>
 

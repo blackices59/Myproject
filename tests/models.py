@@ -26,3 +26,20 @@ class RelationshipTable(models.Model):
 
     def __str__(self):
         return self.info
+
+
+class Student(models.Model):
+    sex = (
+        (1, '男'),
+        (2, '女'),
+    )
+    name = models.CharField(verbose_name='名字', max_length=20)
+    sex = models.SmallIntegerField(verbose_name='性别', choices=sex)
+    tel = models.CharField(verbose_name='电话', max_length=11)
+
+    class Meta:
+        verbose_name = '学生信息表'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
