@@ -21,5 +21,10 @@ urlpatterns = [
     # 测试网页界面
     path('tests/', include('tests.urls')),
     path('webtest/', include('webtest.urls')),
-    path('polls/', include('polls.urls')),
+    path('polls/', include('polls.urls', namespace='polls')),
+    path('polls-other/', include('polls.urls', namespace='polls-other')),
+
+    path('login/', include('login.urls', namespace='login')),
+
+    path('captcha/', include('captcha.urls')),
 ]

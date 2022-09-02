@@ -6,6 +6,8 @@ from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from .models import Choice, Question
 
+from .forms import NameForm
+
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -39,3 +41,22 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def index(request):
+    return HttpResponse(status=303)
+
+
+def get_name(request):
+
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+
+        if form.is_valid():
+
+            return HttpResponseRedirect('/thanks/')
+
+        else:
+            form = NameForm()
+
+        return render(request, 'name.html', {'form': form})

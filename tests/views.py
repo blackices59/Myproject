@@ -71,6 +71,7 @@ def getGearBox(request):
 
     return JsonResponse({"gearboxs": res})
 
+
 # 获取排放法规信息
 def getEmissionRegulation(request):
 
